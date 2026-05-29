@@ -13,6 +13,9 @@
 <script>
 
 </script>
+
+<a href = "/tic-tac-toe/start"> Новая игра </a>
+
 <table>
 	<tr>
 		<td onclick="window.location='/tic-tac-toe/logic?click=0'">0</td>
