@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
-<html>
+<html lang="">
 <head>
     <title>Tic-Tac-Toe</title>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <link href="static/main.css" rel="stylesheet">
 </head>
 <body>
@@ -16,22 +17,29 @@
 
 <a href = "/tic-tac-toe/start"> Новая игра </a>
 
-<table>
-	<tr>
-		<td onclick="window.location='/tic-tac-toe/logic?click=0'">0</td>
-		<td onclick="window.location='/tic-tac-toe/logic?click=1'">1</td>
-		<td onclick="window.location='/tic-tac-toe/logic?click=2'">2</td>
-	</tr>
-	<tr>
-		<td onclick="window.location='/tic-tac-toe/logic?click=3'">3</td>
-		<td onclick="window.location='/tic-tac-toe/logic?click=4'">4</td>
-		<td onclick="window.location='/tic-tac-toe/logic?click=5'">5</td>
-	</tr>
-	<tr>
-		<td onclick="window.location='/tic-tac-toe/logic?click=6'">6</td>
-		<td onclick="window.location='/tic-tac-toe/logic?click=7'">7</td>
-		<td onclick="window.location='/tic-tac-toe/logic?click=8'">8</td>
-	</tr>
+<c:set var="size" value="3"/>
+
+<table id="board">
+	<c:forEach begin="0" end="${size - 1}" var="row">
+		<tr>
+			<c:forEach begin="0" end="${size - 1}" var="col">
+				<c:set var="i" value="${row * size + col}"/>
+				<td data-cell="${i}">${data.get(i).sign}</td>
+			</c:forEach>
+		</tr>
+	</c:forEach>
 </table>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		document.getElementById('board').addEventListener('click', (e) => {
+			const cell = e.target.closest('td');
+			if (cell) {
+				window.location = '/tic-tac-toe/logic?click='+ cell.dataset.cell;
+			}
+		});
+	});
+</script>
+
 </body>
 </html>
