@@ -5,6 +5,7 @@
 <head>
     <title>Tic-Tac-Toe</title>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@ page import="com.tictactoe.Sign" %>
     <link href="static/main.css" rel="stylesheet">
 </head>
 <body>
@@ -40,6 +41,17 @@
 		});
 	});
 </script>
+
+<hr>
+<c:set var="CROSSES" value="<%=Sign.CROSS%>"/>
+<c:set var="NOUGHTS" value="<%=Sign.NOUGHT%>"/>
+
+<c:if test="${winner == CROSSES}">
+	<h1>CROSSES WIN!</h1>
+</c:if>
+<c:if test="${winner == NOUGHTS}">
+	<h1>NOUGHTS WIN!</h1>
+</c:if>
 
 </body>
 </html>
